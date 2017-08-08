@@ -1,0 +1,25 @@
+#ACCURACY
+
+#load csv file data
+filename = 'C:\\Users\\mvrk\\Dropbox\\projects\\freelancer\\naive_bayes\\Bayes Test.csv'
+dataset = loadCsv(filename)
+print('Loaded data file {0} with {1} rows'.format(filename, len(dataset)))
+
+#split dataset into training and test data 67%= training and 33%=test data
+splitRatio = 0.67
+train, test = splitDataset(dataset, splitRatio)
+
+#supervised training of data to get the attribute value counter in order to calculate the probabilities
+class_atrribute_counter = get_class_attribute_counter(train)
+
+
+#predicting classname on test data instances
+train_predictions = get_predictions(class_atrribute_counter, train)
+#accuracy of predictions of train data
+train_accuracy = get_accuracy(train, train_predictions)
+
+#predicting classname on test data instances
+test_predictions = get_predictions(class_atrribute_counter, test)
+#accuracy of predictions of test data
+test_accuracy = get_accuracy(test, test_predictions)
+print('Train Accuracy: {0} and Test Accuracy: {1}'.format(train_accuracy, test_accuracy))

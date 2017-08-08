@@ -1,0 +1,20 @@
+#PROBABILITIES
+	
+#load csv file data
+filename = 'C:\\Users\\mvrk\\Dropbox\\projects\\freelancer\\naive_bayes\\Bayes Test.csv'
+dataset = loadCsv(filename)
+print('Loaded data file {0} with {1} rows'.format(filename, len(dataset)))
+
+#split dataset into training and test data 67%= training and 33%=test data
+splitRatio = 0.67
+train, test = splitDataset(dataset, splitRatio)
+
+#supervised training of data to get the attribute value counter in order to calculate the probabilities
+class_atrribute_counter = get_class_attribute_counter(train)
+
+#find the probability of a class given the attributes
+input_vector = ["LMOR","NON", "?", "?", "?", "?"]
+class_name = "LOW"
+probabilities = class_probabilities(class_atrribute_counter, input_vector)
+print('Probabilities for class {0}: {1}'.format(class_name, probabilities[class_name]))
+print("-"*10)
